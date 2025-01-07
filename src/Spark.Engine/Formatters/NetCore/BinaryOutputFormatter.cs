@@ -1,4 +1,10 @@
-﻿#if NETSTANDARD2_0 || NET6_0
+﻿/* 
+ * Copyright (c) 2019-2024, Incendi <info@incendi.no>
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#if NETSTANDARD2_0 || NET6_0
 using FhirModel = Hl7.Fhir.Model;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Spark.Engine.Core;

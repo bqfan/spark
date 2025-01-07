@@ -1,18 +1,15 @@
-﻿/* 
- * Copyright (c) 2020, Kufu (info@kufu.no) and contributors
- * See the file CONTRIBUTORS for details.
- * 
- * This file is licensed under the BSD 3-Clause license
- * available at https://raw.github.com/furore-fhir/spark/master/LICENSE
+﻿/*
+ * Copyright (c) 2021-2024, Incendi <info@incendi.no>
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 
-namespace Spark.Mongo.Tests.Search
-{
-    internal class StringBsonSerializer : StringSerializer, IBsonSerializer
-    {
+namespace Spark.Mongo.Tests.Search;
 
-    }
+internal class StringBsonSerializer : StringSerializer, IBsonSerializer
+{
+
 }

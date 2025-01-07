@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* 
+ * Copyright (c) 2015-2018, Firely <info@fire.ly>
+ * Copyright (c) 2021-2024, Incendi <info@incendi.no>
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using Spark.Engine.Extensions;
@@ -6,15 +13,15 @@ using Spark.Engine.Extensions;
 using Microsoft.AspNetCore.Http;
 #endif
 
-namespace Spark.Engine.Core
+namespace Spark.Engine.Core;
+
+public class ConditionalHeaderParameters
 {
-    public class ConditionalHeaderParameters
+    public ConditionalHeaderParameters(HttpRequestMessage request)
     {
-        public ConditionalHeaderParameters(HttpRequestMessage request)
-        {
-            IfNoneMatchTags = request.IfNoneMatch();
-            IfModifiedSince = request.IfModifiedSince();
-        }
+        IfNoneMatchTags = request.IfNoneMatch();
+        IfModifiedSince = request.IfModifiedSince();
+    }
 
 #if NETSTANDARD2_0 || NET6_0
         public ConditionalHeaderParameters(HttpRequest request)
@@ -24,7 +31,6 @@ namespace Spark.Engine.Core
         }
 #endif
 
-        public IEnumerable<string> IfNoneMatchTags { get; set; }
-        public DateTimeOffset? IfModifiedSince { get; set; }
-    }
+    public IEnumerable<string> IfNoneMatchTags { get; set; }
+    public DateTimeOffset? IfModifiedSince { get; set; }
 }

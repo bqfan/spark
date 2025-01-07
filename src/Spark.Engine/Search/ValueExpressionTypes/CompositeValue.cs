@@ -1,51 +1,49 @@
 ﻿/* 
- * Copyright (c) 2014, Furore (info@furore.com) and contributors
- * See the file CONTRIBUTORS for details.
+ * Copyright (c) 2015-2018, Firely <info@fire.ly>
+ * Copyright (c) 2021-2024, Incendi <info@incendi.no>
  * 
- * This file is licensed under the BSD 3-Clause license
- * available at https://raw.githubusercontent.com/ewoutkramer/fhir-net-api/master/LICENSE
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 using Spark.Search.Support;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Spark.Search
+namespace Spark.Search;
+
+public class CompositeValue : ValueExpression
 {
-    public class CompositeValue : ValueExpression
+    private const char TUPLESEPARATOR = '$';
+
+    public ValueExpression[] Components { get; private set; }
+
+    public CompositeValue(ValueExpression[] components)
     {
-        private const char TUPLESEPARATOR = '$';
+        if (components == null) throw Error.ArgumentNull("components");
 
-        public ValueExpression[] Components { get; private set; }
+        Components = components;
+    }
 
-        public CompositeValue(ValueExpression[] components)
-        {
-            if (components == null) throw Error.ArgumentNull("components");
+    public CompositeValue(IEnumerable<ValueExpression> components)
+    {
+        if (components == null) throw Error.ArgumentNull("components");
 
-            Components = components;
-        }
+        Components = components.ToArray();
+    }
 
-        public CompositeValue(IEnumerable<ValueExpression> components)
-        {
-            if (components == null) throw Error.ArgumentNull("components");
-
-            Components = components.ToArray();
-        }
-
-        public override string ToString()
-        {
-            var values = Components.Select(v => v.ToString());
-            return string.Join(TUPLESEPARATOR.ToString(),values);
-        }
+    public override string ToString()
+    {
+        var values = Components.Select(v => v.ToString());
+        return string.Join(TUPLESEPARATOR.ToString(),values);
+    }
 
 
-        public static CompositeValue Parse(string text)
-        {
-            if (text == null) throw Error.ArgumentNull("text");
+    public static CompositeValue Parse(string text)
+    {
+        if (text == null) throw Error.ArgumentNull("text");
 
-            var values = text.SplitNotEscaped(TUPLESEPARATOR);
+        var values = text.SplitNotEscaped(TUPLESEPARATOR);
 
-            return new CompositeValue(values.Select(v => new UntypedValue(v)));
-        }
+        return new CompositeValue(values.Select(v => new UntypedValue(v)));
     }
 }

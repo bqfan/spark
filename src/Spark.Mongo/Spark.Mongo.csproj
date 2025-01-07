@@ -2,15 +2,16 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <LangVersion>8.0</LangVersion>
+        <AssemblyName>Spark.Mongo.R4</AssemblyName>
+        <LangVersion>latest</LangVersion>
         <PackageId>Spark.Mongo.R4</PackageId>
         <Product>Spark.Mongo.R4</Product>
         <Description>MongoDB Storage Implementation for Spark</Description>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Hl7.Fhir.R4" Version="5.4.0" />
-        <PackageReference Include="MongoDB.Driver" Version="2.23.1" />
+        <PackageReference Include="Hl7.Fhir.R4" Version="5.11.1" />
+        <PackageReference Include="MongoDB.Driver" Version="2.30.0" />
     </ItemGroup>
 
     <ItemGroup>
