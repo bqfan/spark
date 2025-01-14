@@ -9,12 +9,12 @@ services:
       - SparkSettings__Endpoint=http://localhost:5555/fhir
     ports:
       - "5555:80"
-      - "44344:443"
     depends_on:
       - mongodb
   mongodb:
     container_name: mongodb
-    image: sparkfhir/mongo:r4-latest
+    image: arm64v8/mongo:5.0.3
+    platform: linux/arm64/v8
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: CosmicTopSecret
