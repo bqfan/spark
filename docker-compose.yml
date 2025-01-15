@@ -2,7 +2,7 @@ version: "3"
 services:  
   spark:
     container_name: spark
-    restart: always
+    restart: no
     image: sparkfhir/spark:r4-latest
     environment:
       - StoreSettings__ConnectionString=mongodb://root:CosmicTopSecret@mongodb:27017/spark?authSource=admin
